@@ -1,5 +1,14 @@
-# memoryGame
+# Memory Game
 
+Nesse projeto foi construído um jogo da memória, foi realizado através do curso *Desenvolvimento Web - Do zero ao primeiro projeto*. Nele adicionei como melhoria um contador de movimentos e um ranking de melhores jogadas que fica salvo no localStorage.
 
+### Preview
+![](/assets/preview1.gif)
+![](/assets/preview-gameover.gif)
 
-https://imgur.com/0i44ZY8
+![](/assets/previewFull.gif)
+
+### Tecnologias
+* HTML
+* CSS 
+* Javascript
