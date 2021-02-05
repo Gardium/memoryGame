@@ -3,7 +3,7 @@ const BACK = "card-back";
 const CARD = "card";
 const ICON = "icon";
 let moves = 0;
-let games = 0;
+let right = 0;
 let movesCounter = document.getElementById("moves");
 let modal = document.getElementById("gameOver");
 let gameBoard = document.getElementById("gameBoard");
@@ -15,6 +15,7 @@ function startGame() {
 }
 
 function initializeCards(cards) {
+  clearVariables();
   game.cards.forEach((card) => {
     let cardElement = document.createElement("div");
     cardElement.id = card.id;
@@ -50,10 +51,10 @@ function flipCard() {
   if (game.setCard(this.id)) {
     this.classList.add("flip");
     if (game.secondCard) {
+      movesCount();
       if (game.checkMatch()) {
         game.clearCards();
         game.checkGameOver();
-        movesCount();
       } else {
         setTimeout(() => {
           let firstCardView = document.getElementById(game.firstCard.id);
@@ -70,6 +71,8 @@ function flipCard() {
 
 function showModal() {
   if (game.checkGameOver()) {
+    game.minMoves();
+
     modal.style.display = "flex";
   } else {
     modal.style.display = "none";
@@ -77,18 +80,23 @@ function showModal() {
 }
 
 function restart() {
-  gameBoard.innerHTML = "";
   startGame();
-  moves = 0;
-  games++;
-  document.getElementById("games").innerHTML = `Você jogou ${games} jogo(s)`;
-  movesCounter.innerHTML = "";
   game.checkGameOver();
   showModal();
 }
 
 function movesCount() {
   moves++;
-  movesCounter.innerHTML = `Você já fez  ${moves} jogada(s)`;
-  document.getElementById("totalMoves").innerHTML = `Com  ${moves} jogada`;
+
+  movesCounter.innerHTML = `Total de Movimentos : ${moves} movimentos`;
+  document.getElementById("totalMoves").innerHTML = `Com  ${moves} movimentos`;
+}
+
+function clearVariables() {
+  gameBoard.innerHTML = "";
+  moves = 0;
+  movesCounter.innerHTML = `Total de Movimentos : ${moves} movimentos`;
+  document.getElementById(
+    "games"
+  ).innerHTML = `Melhor partida : ${game.min} movimentos`;
 }

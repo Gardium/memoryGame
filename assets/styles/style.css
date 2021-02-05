@@ -8,7 +8,7 @@
 body {
   font-family: "Righteous", sans-serif;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
   background-color: #c7cdd3;
@@ -88,16 +88,24 @@ body {
 }
 
 #gameBoard {
+  order: 1;
   margin-top: 50px;
-  max-width: 700px;
+  max-width: 900px;
   display: grid;
   grid-template: repeat(4, 1fr) / repeat(5, 1fr);
-  grid-gap: 20px;
+  grid-gap: 16px;
 }
 
 #cont {
-  position: absolute;
-  bottom: 15%;
-  font-size: 2rem;
-  text-align: center;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-left: 50px;
+  margin-right: 50px;
+  min-width: 400px;
+}
+@media screen and (min-width: 1440px) {
+  .card {
+    width: 150px;
+    height: 150px;
+  }
 }

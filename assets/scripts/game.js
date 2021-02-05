@@ -2,6 +2,10 @@ let game = {
   lockMode: false,
   firstCard: null,
   secondCard: null,
+  min:
+    localStorage.getItem("minMoves") == null
+      ? 0
+      : parseInt(localStorage.getItem("minMoves")),
 
   setCard: function (id) {
     let card = this.cards.filter((card) => card.id === id)[0];
@@ -26,7 +30,6 @@ let game = {
     if (!this.firstCard || !this.secondCard) {
       return false;
     }
-
     return this.firstCard.icon == this.secondCard.icon;
   },
 
@@ -56,7 +59,7 @@ let game = {
     }
 
     this.cards = this.cards.flatMap((pair) => pair);
-    // this.shuffleCards();
+    this.shuffleCards();
     return this.cards;
   },
 
@@ -101,5 +104,11 @@ let game = {
 
   checkGameOver: function () {
     return this.cards.filter((card) => !card.flipped).length == 0;
+  },
+  minMoves: function () {
+    if (this.min == 0 || moves < this.min) {
+      localStorage.setItem("minMoves", moves);
+      this.min = localStorage.getItem("minMoves");
+    }
   },
 };
